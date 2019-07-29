@@ -1,8 +1,21 @@
+
 const { PorterStemmerEs } = require('natural')
 const { NeuralNetwork } = require('brain.js')
 
 /*
-    {iuterans} --> {inter}
+    input: frases del usuario.
+
+
+    inter = intents
+        Clases: acciones que sabe llevar a cabo
+    el bot o a las que sabe responder.
+    utterance = iuterans
+        Frases de entreno.
+
+    Features: Características de la frase que
+    podemos cuantificar de una manera numérica.
+
+    {intents} --> {utterance}s
 
     1. Buenos dias --> saludar
     2. hola --> saludar
@@ -10,12 +23,15 @@ const { NeuralNetwork } = require('brain.js')
     4. quien es tu programador --> programador
     5. quien te ha desarrollado --> programador
 
+    features = ['Buenos', 'dias', 'hola',
+    'buenas', 'tardes', 'quien', 'es', 'tu',
+    'programador', 'te', 'ha', 'desarrollado']
     NOTA:
         Ahora bien... Si que tenemos la frase
     "quien es tu desarrollador" es muy similar
     a {5}.
         Aquí lo que tenemos q lograr es que
-    dado un texto identificar el "inter".
+    dado un texto identificar el "intents".
         Por lo que para entenderla hay que
     cortar las palabras, es decir, a partir de
     un texto obtener la lista de palabas.

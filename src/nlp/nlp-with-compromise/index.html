@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Compromise.js</title>
+    <script src="https://unpkg.com/compromise"></script>
+    <style>
+        .title {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>NPL whit javascript</h1>
+    </div>
+</body>
+<script type="text/javascript">
+    const docx = nlp('Jack Ryan is a CIA Analyst in New York')
+    console.log(docx.data())
+    // sentences
+    console.log(docx.sentences().data())
+    console.log(docx.sentences().terms().out('array'))
+
+    // pos + Entities
+    console.log(docx.sentences().terms().out('tags'))
+
+    // NER people
+    console.log(docx.topics().people().text())
+
+    // NER Firstname & Lastname
+    console.log(docx.people().firstNames().text())
+
+    // NER for places (lugares)
+    console.log(docx.places().text())
+
+    // for Orgs (lugares)
+    console.log(docx.topics().organizations().text())
+
+    // Noun Chunks & Verbs (lugares)
+    console.log(docx.nouns().text())
+    console.log(docx.nouns().toPlural().text())
+    console.log(docx.verbs().text())
+
+    // plurals
+    const doc1 = nlp('book')
+    console.log(doc1.nouns().toPlural().text())
+
+    // out html
+    console.log(doc1.nouns().toPlural().out('html'))
+
+    // upper & lower
+    console.log(doc1.nouns().toUpperCase().text())
+    console.log(doc1.nouns().toLowerCase().text())
+
+    // Numbers
+    const num1 = nlp('fifty seven')
+    console.log(num1.values().toNumber().text())
+    const num2 = nlp('fifty seven')
+    // Ordinals & Cardinals
+    console.log(num2.values().toOrdinal().text())
+    console.log(num2.values().toCardinal().text())
+    // add & sub
+    console.log(num1.values().add(3).out('text'))
+    console.log(num1.values().subtract(10).out('text'))
+    // Increment
+    console.log(num1.values().increment().out('text'))
+
+    // date
+    const date1 = nlp('I will be travelling next fri.')
+    console.log(date1.dates().toLongForm().text())
+    console.log(date1.dates().toShortForm().text())
+    const date2 = nlp('I will be travelling Monday.')
+    console.log(date2.dates().toLongForm().text())
+    console.log(date2.dates().toShortForm().text())
+
+    /*
+        ## Ngrams
+        + Para predecir el siguiente artículo en una secuencia de este tipo en forma de (n - 1) - órdenes
+        + Usos
+        - probabilidad,
+        - teoría de la comunicación,
+        - lingüística computacional,
+        - Análisis de secuencia.
+    */
+    const docx2 = nlp('the car is behind the garage.')
+    // unigrams & bigrams 6 trigrams
+    console.log(docx2.ngrams().unigrams().data())
+    console.log(docx2.ngrams().bigrams().data())
+    console.log(docx2.ngrams().trigrams().data())
+</script>
+</html>

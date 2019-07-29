@@ -1,5 +1,5 @@
 {
-  "name": "nlp-research",
+  "name": "ia-research",
   "version": "1.0.0",
   "description": "# NLU Natural Language",
   "main": "index.js",
@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "brain.js": "^1.6.1",
-    "natural": "^0.6.3"
+    "compromise": "^11.14.2",
+    "natural": "^0.6.3",
+    "sentiment": "^5.0.1"
   }
 }
